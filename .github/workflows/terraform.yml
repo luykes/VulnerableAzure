@@ -1,7 +1,6 @@
 #Github Actions to trigger Terraform Cloud and provision using AZ
 name: 'Deploy Action'
 
-
 on:
   push:
     branches:
@@ -54,7 +53,8 @@ jobs:
            echo ::set-env name=APP_NAME::$(echo "${out}-app-service")
            echo ::set-env name=RG::$(echo "${out}-rg")
       
-      #Use AZ to provision webapp     
+      #Use AZ to provision webapp   
+      #test
     - name: Deploy app using AZ
       env:
         AZ_ID: ${{ secrets.AZ_ID }}
