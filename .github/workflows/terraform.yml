@@ -51,8 +51,8 @@ jobs:
         TF_WORKSPACE_ID: ${{ secrets.TF_ENV }}
       run: |
            out=$(curl --silent --header "Authorization: Bearer ${TF_API_TOKEN}" --header "Content-Type: application/vnd.api+json" https://app.terraform.io/api/v2/workspaces/${TF_WORKSPACE_ID}/vars | jq -c --arg key "victim-company" '.data[].attributes | select (.key=="victim_company") | .value' | tr -d \")
-           echo ::set-env name=APP_NAME::$(echo "${out}-app-service")
-           echo ::set-env name=RG::$(echo "${out}-rg")
+           echo ::set-env name=APP_NAME::$(echo "${out}-app-service") >> $GITHUB_ENV
+           echo ::set-env name=RG::$(echo "${out}-rg") >> $GITHUB_ENV
       
       #Use AZ to provision webapp   
       #test
